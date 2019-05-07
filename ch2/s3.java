@@ -35,4 +35,33 @@ class SectionThree {
 		}
 		return -1;
 	}
+
+	// binary search + insertion
+	public void insertionBS(int[] A) {
+		for (int j = 1; j < A.length; j++) {
+			int i = j - 1;
+			int key = A[j];
+			int idx = findLatter(A, key, 0, i);
+			while (i >= idx) {
+				A[i + 1] = A[i];
+				i--;
+			}
+			A[idx] = key;
+		}
+	}
+
+	private int findLatter(int[] A, int key, int lo, int hi) {
+		while (lo < hi) {
+			int mid = lo + (hi - lo) / 2;
+			if (A[mid] > key) {
+				hi = mid;
+			} else {
+				lo = mid + 1;
+			}
+		}
+		if (A[lo] <= key) {
+			return lo + 1;
+		}
+		return lo;
+	}
 }
