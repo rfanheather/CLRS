@@ -37,6 +37,7 @@ class SectionThree {
 	}
 
 	// binary search + insertion
+	// time O(N^2)
 	public void insertionBS(int[] A) {
 		for (int j = 1; j < A.length; j++) {
 			int i = j - 1;
@@ -63,5 +64,22 @@ class SectionThree {
 			return lo + 1;
 		}
 		return lo;
+	}
+
+	// 2.3-7
+	public boolean findTwoSum(int[] A, int sum) {
+		mergeSort(A, 0, A.length - 1);
+		int l = 0;
+		int r = A.length - 1;
+		while (l < r) {
+			if (A[l] + A[r] == sum) {
+				return true;
+			} else if (A[l] + A[r] < sum) {
+				l++;
+			} else {
+				r--;
+			}
+		}
+		return false;
 	}
 }
